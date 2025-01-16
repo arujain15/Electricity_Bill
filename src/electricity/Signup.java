@@ -7,6 +7,8 @@ import java.awt.event.*;
 
 public class Signup extends JFrame implements ActionListener {
     JButton create, back;
+    Choice accountType;
+    JTextField meter, username, password,name;
     Signup() {
         super("Signup");
         setBounds(450,150,700,400);
@@ -28,7 +30,7 @@ public class Signup extends JFrame implements ActionListener {
         heading.setFont(new Font("Tahoma",Font.BOLD, 14));
         panel.add(heading);
 
-        Choice accountType = new Choice();
+        accountType = new Choice();
         accountType.add("Admin");
         accountType.add("Customer");
         accountType.setBounds(260,50,150,20);
@@ -40,7 +42,7 @@ public class Signup extends JFrame implements ActionListener {
         lb1meter.setFont(new Font("Tahoma",Font.BOLD, 14));
         panel.add(lb1meter);
 
-        JTextField meter = new JTextField();
+        meter = new JTextField();
         meter.setBounds(260,90, 150,20);
         panel.add(meter);
 
@@ -50,7 +52,7 @@ public class Signup extends JFrame implements ActionListener {
         lb1username.setFont(new Font("Tahoma",Font.BOLD, 14));
         panel.add(lb1username);
 
-        JTextField username = new JTextField();
+        username = new JTextField();
         username.setBounds(260,130, 150,20);
         panel.add(username);
 
@@ -60,7 +62,7 @@ public class Signup extends JFrame implements ActionListener {
         lb1name.setFont(new Font("Tahoma",Font.BOLD, 14));
         panel.add(lb1name);
 
-        JTextField name = new JTextField();
+        name = new JTextField();
         name.setBounds(260,170, 150,20);
         panel.add(name);
 
@@ -70,7 +72,7 @@ public class Signup extends JFrame implements ActionListener {
         lb1password.setFont(new Font("Tahoma",Font.BOLD, 14));
         panel.add(lb1password);
 
-        JTextField password = new JTextField();
+        password = new JTextField();
         password.setBounds(260,210, 150,20);
         panel.add(password);
 
@@ -100,6 +102,23 @@ public class Signup extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == create) {
+            String atype = accountType.getSelectedItem();
+            String susername = username.getText();
+            String sname = name.getText();
+            String spassword = password.getText();
+            String smeter = meter.getText();
+
+            try {
+                Conn c = new Conn();
+                String query = "insert into login values(' "+ smeter +" ','" + susername+"', '"+ sname +"', '"+ spassword +"', '"+ atype +"')";
+
+                c.s.executeUpdate(query);
+                JOptionPane.showMessageDialog(null,"Account Created Successfully");
+                setVisible(false);
+                new Login();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         } else if (ae.getSource() == back) {
             setVisible(false);
