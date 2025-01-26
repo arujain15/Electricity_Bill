@@ -3,8 +3,9 @@ package electricity;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.event.ActionEvent;
 
-public class Project extends JFrame {
+public class Project extends JFrame implements ActionListener{
     Project() {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/elect1.jpg"));
@@ -27,6 +28,7 @@ public class Project extends JFrame {
         Image image1 = icon1.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         newCustomer.setIcon(new ImageIcon(image1));
         newCustomer.setMnemonic('D');
+        newCustomer.addActionListener(this);
         newCustomer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,ActionEvent.CTRL_MASK));
         master.add(newCustomer);
 
@@ -37,6 +39,7 @@ public class Project extends JFrame {
         Image image2 = icon2.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         customerDetails.setIcon(new ImageIcon(image2));
         customerDetails.setMnemonic('M');
+        customerDetails.addActionListener(this);
         customerDetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,ActionEvent.CTRL_MASK));
         master.add(customerDetails);
 
@@ -47,6 +50,7 @@ public class Project extends JFrame {
         Image image3 = icon3.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         depositDetails.setIcon(new ImageIcon(image3));
         depositDetails.setMnemonic('N');
+        depositDetails.addActionListener(this);
         depositDetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,ActionEvent.CTRL_MASK));
         master.add(depositDetails);
 
@@ -57,6 +61,7 @@ public class Project extends JFrame {
         Image image4 = icon4.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         calculateBills.setIcon(new ImageIcon(image4));
         calculateBills.setMnemonic('B');
+        calculateBills.addActionListener(this);
         calculateBills.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B,ActionEvent.CTRL_MASK));
         master.add(calculateBills);
 
@@ -163,6 +168,20 @@ public class Project extends JFrame {
         setLayout(new FlowLayout());
 
         setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        String msg = ae.getActionCommand();
+        if(msg.equals("New Customer")) {
+            new NewCustomer();
+        } else if (msg.equals("Customer Details")) {
+
+        } else if (msg.equals("Deposit Details")) {
+
+        } else if (msg.equals("Customer Bills")) {
+            new CalculateBill();
+        }
+
     }
     public static void main(String[] args) {
         new Project();
