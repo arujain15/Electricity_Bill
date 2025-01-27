@@ -124,7 +124,8 @@ public class NewCustomer extends JFrame implements ActionListener{
             String phone = tfphone.getText();
 
             String query1 = "insert into customer values ('"+ name +"','"+ meter +"','"+ address +"', '"+ city +"', '"+ state +"','"+ email +"','"+ phone +"')";
-            String query2 = "insert into login values('"+ meter +"','"+ name +"','', '')";
+            String query2 = "INSERT INTO login VALUES('"+ meter +"', '', '"+ name +"', '', '')";
+
 
             try {
                 Conn c = new Conn();
