@@ -27,9 +27,9 @@ public class Project extends JFrame implements ActionListener{
         ImageIcon icon1 = new ImageIcon(ClassLoader.getSystemResource("icon/icon1.png"));
         Image image1 = icon1.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         newCustomer.setIcon(new ImageIcon(image1));
-        newCustomer.setMnemonic('D');
+        newCustomer.setMnemonic('N');
         newCustomer.addActionListener(this);
-        newCustomer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,ActionEvent.CTRL_MASK));
+        newCustomer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,ActionEvent.CTRL_MASK));
         master.add(newCustomer);
 
         JMenuItem customerDetails = new JMenuItem("Customer Details");
@@ -49,9 +49,9 @@ public class Project extends JFrame implements ActionListener{
         ImageIcon icon3 = new ImageIcon(ClassLoader.getSystemResource("icon/icon3.png"));
         Image image3 = icon3.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         depositDetails.setIcon(new ImageIcon(image3));
-        depositDetails.setMnemonic('N');
+        depositDetails.setMnemonic('D');
         depositDetails.addActionListener(this);
-        depositDetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,ActionEvent.CTRL_MASK));
+        depositDetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,ActionEvent.CTRL_MASK));
         master.add(depositDetails);
 
         JMenuItem calculateBills = new JMenuItem("Calculate Bills");
@@ -175,10 +175,10 @@ public class Project extends JFrame implements ActionListener{
         if(msg.equals("New Customer")) {
             new NewCustomer();
         } else if (msg.equals("Customer Details")) {
-
+            new CustomerDetails();
         } else if (msg.equals("Deposit Details")) {
-
-        } else if (msg.equals("Customer Bills")) {
+            new DepositDetails();
+        } else if (msg.equals("Calculate Bills")) {
             new CalculateBill();
         }
 
