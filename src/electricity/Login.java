@@ -88,8 +88,9 @@ public class Login extends JFrame implements ActionListener {
                 ResultSet rs = c.s.executeQuery(query);
 
                 if (rs.next()) {
+                    String meter = rs.getString("meter_no");
                     setVisible(false);
-                    new Project(suser);
+                    new Project(suser, meter);
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid Login");
                     username.setText("");

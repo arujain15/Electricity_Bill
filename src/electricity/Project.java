@@ -7,9 +7,10 @@ import java.awt.event.ActionEvent;
 
 public class Project extends JFrame implements ActionListener{
 
-    String suser;
-    Project(String suser) {
+    String suser, meter;
+    Project(String suser, String meter) {
         this.suser = suser;
+        this.meter = meter;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/elect1.jpg"));
         Image i2 = i1.getImage().getScaledInstance(1400,800,Image.SCALE_DEFAULT);
@@ -88,6 +89,7 @@ public class Project extends JFrame implements ActionListener{
         Image image6 = icon6.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         viewInfo.setIcon(new ImageIcon(image6));
         viewInfo.setMnemonic('V');
+        viewInfo.addActionListener(this);
         viewInfo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,ActionEvent.CTRL_MASK));
         info.add(viewInfo);
 
@@ -188,10 +190,12 @@ public class Project extends JFrame implements ActionListener{
             new DepositDetails();
         } else if (msg.equals("Calculate Bills")) {
             new CalculateBill();
+        } else if (msg.equals("View Information")) {
+            new ViewInformation(meter);
         }
 
     }
     public static void main(String[] args) {
-        new Project("");
+        new Project("", "");
     }
 }
