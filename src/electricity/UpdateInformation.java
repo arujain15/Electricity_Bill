@@ -123,7 +123,7 @@ public class UpdateInformation extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == update) {
-            String address = tfemail.getText();
+            String address = tfaddress.getText();
             String city = tfcity.getText();
             String state = tfstate.getText();
             String email = tfemail.getText();
@@ -131,7 +131,7 @@ public class UpdateInformation extends JFrame implements ActionListener {
 
             try {
                 Conn c = new Conn();
-                c.s.executeUpdate("update customer set address = '"+address+"', city = '"+city+"',state = '"+state+"',email = '"+email+"',phone = '"+phone+"'");
+                c.s.executeUpdate("update customer set address = '"+address+"', city = '"+city+"',state = '"+state+"',email = '"+email+"',phone = '"+phone+"' where meter_no = '"+meter+"'");
 
                 JOptionPane.showMessageDialog(null,"User Information Updated Successfully");
             } catch (Exception e) {
