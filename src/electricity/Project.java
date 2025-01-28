@@ -114,6 +114,7 @@ public class Project extends JFrame implements ActionListener{
         Image image8 = icon8.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         billDetails.setIcon(new ImageIcon(image8));
         billDetails.setMnemonic('K');
+        billDetails.addActionListener(this);
         billDetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_K,ActionEvent.CTRL_MASK));
         user.add(billDetails);
 
@@ -139,7 +140,8 @@ public class Project extends JFrame implements ActionListener{
         ImageIcon icon10 = new ImageIcon(ClassLoader.getSystemResource("icon/icon12.png"));
         Image image10 = icon5.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         notepad.setIcon(new ImageIcon(image10));
-        notepad.setMnemonic('o');
+        notepad.setMnemonic('O');
+        notepad.addActionListener(this);
         notepad.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,ActionEvent.CTRL_MASK));
         utility.add(notepad);
 
@@ -150,6 +152,7 @@ public class Project extends JFrame implements ActionListener{
         Image image11 = icon11.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         calculator.setIcon(new ImageIcon(image11));
         calculator.setMnemonic('L');
+        calculator.addActionListener(this);
         calculator.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,ActionEvent.CTRL_MASK));
         utility.add(calculator);
 
@@ -163,6 +166,7 @@ public class Project extends JFrame implements ActionListener{
         Image image12 = icon12.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         exit1.setIcon(new ImageIcon(image12));
         exit1.setMnemonic('E');
+        exit1.addActionListener(this);
         exit1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,ActionEvent.CTRL_MASK));
         exit.add(exit1);
 
@@ -170,8 +174,8 @@ public class Project extends JFrame implements ActionListener{
             mb.add(master);
         } else {
             mb.add(info);
-            mb.add(report);
             mb.add(user);
+            mb.add(report);
         }
         mb.add(utility);
         mb.add(exit);
@@ -195,6 +199,23 @@ public class Project extends JFrame implements ActionListener{
             new ViewInformation(meter);
         } else if (msg.equals("Update Information")) {
             new UpdateInformation(meter);
+        } else if (msg.equals("Bill Details")) {
+            new BillDetails(meter);
+        } else if (msg.equals("Notepad")) {
+            try {
+                Runtime.getRuntime().exec("notepad.exe");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (msg.equals("Calculator")) {
+            try {
+                Runtime.getRuntime().exec("calc.exe");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (msg.equals("Exit")) {
+            setVisible(false);
+            new Login();
         }
 
     }
