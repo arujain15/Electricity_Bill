@@ -79,6 +79,7 @@ public class Project extends JFrame implements ActionListener{
         Image image5 = icon5.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         updateInfo.setIcon(new ImageIcon(image5));
         updateInfo.setMnemonic('U');
+        updateInfo.addActionListener(this);
         updateInfo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U,ActionEvent.CTRL_MASK));
         info.add(updateInfo);
 
@@ -192,6 +193,8 @@ public class Project extends JFrame implements ActionListener{
             new CalculateBill();
         } else if (msg.equals("View Information")) {
             new ViewInformation(meter);
+        } else if (msg.equals("Update Information")) {
+            new UpdateInformation(meter);
         }
 
     }
